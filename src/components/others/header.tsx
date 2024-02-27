@@ -15,7 +15,7 @@ export default function Header() {
 
   const options = [
     { id: 0, label: 'Painel', path: '/panel', icon: LayoutGrid },
-    { id: 1, label: 'Empresas', path: '/stores', icon: Store },
+    { id: 1, label: 'Lojas', path: '/stores', icon: Store },
     { id: 2, label: 'Usuários', path: '/users', icon: UserRound },
     { id: 3, label: 'Configurações', path: '/settings', icon: Settings },
   ]
