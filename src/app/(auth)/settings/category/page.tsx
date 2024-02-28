@@ -41,14 +41,6 @@ export default function Category() {
     )
   }
 
-  if (!isLoading && !data) {
-    return (
-      <div>
-        <h6>Sem categorias cadastradas</h6>
-      </div>
-    )
-  }
-
   return (
     <>
       <div className='flex flex-1 flex-col'>

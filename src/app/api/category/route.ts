@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server'
+import { eq } from 'drizzle-orm'
 
 import { db } from '@/db'
 import { categories } from '@/db/schema/categories'
-import { eq } from 'drizzle-orm'
 
 type PostType = {
   name: string

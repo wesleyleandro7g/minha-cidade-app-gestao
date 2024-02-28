@@ -9,7 +9,6 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
   DialogClose,
 } from '@/components/ui/dialog'
 import {
@@ -40,8 +39,6 @@ interface CategoryUpdateFormProps {
   name?: string
   iconName?: string
 }
-
-export { DialogTrigger as DialogTriggerEdit }
 
 export function CategoryUpdateForm(props: CategoryUpdateFormProps) {
   const queryClient = useQueryClient()
