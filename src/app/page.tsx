@@ -86,14 +86,6 @@ export default function Login() {
               </Button>
             </form>
           </Form>
-          {/* <div>
-            <Label htmlFor='email'>Email</Label>
-            <Input type='email' id='email' placeholder='Email' />
-          </div>
-          <div>
-            <Label htmlFor='password'>Senha</Label>
-            <Input type='password' id='password' placeholder='Senha' />
-          </div> */}
         </CardContent>
       </Card>
     </main>

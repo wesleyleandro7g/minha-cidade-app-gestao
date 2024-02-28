@@ -1,6 +1,8 @@
-import type { Metadata } from 'next'
-import { Nunito } from 'next/font/google'
 import './globals.css'
+
+import type { Metadata } from 'next'
+import { AppProvider } from '@/providers/app-provider'
+import { Nunito } from 'next/font/google'
 
 const nunito = Nunito({ subsets: ['latin'] })
 
@@ -15,8 +17,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en'>
-      <body className={nunito.className}>{children}</body>
+    <html lang='pt-br'>
+      <AppProvider>
+        <body className={nunito.className}>{children}</body>
+      </AppProvider>
     </html>
   )
 }

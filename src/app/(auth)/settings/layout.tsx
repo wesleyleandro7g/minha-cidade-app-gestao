@@ -39,7 +39,7 @@ export default function RootLayout({
           </Link>
         </aside>
 
-        <div>{children}</div>
+        <div className='flex flex-1'>{children}</div>
       </div>
     </div>
   )
