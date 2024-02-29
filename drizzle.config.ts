@@ -6,7 +6,7 @@ loadEnvConfig(cwd())
 
 export default {
   schema: './src/db/schema',
-  out: './drizzle',
+  out: './src/db/migrations',
   driver: 'mysql2',
   dbCredentials: {
     host: process.env.DB_HOST as string,
