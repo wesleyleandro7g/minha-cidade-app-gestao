@@ -1,4 +1,10 @@
-import { mysqlTable, text, timestamp, varchar } from 'drizzle-orm/mysql-core'
+import {
+  boolean,
+  mysqlTable,
+  text,
+  timestamp,
+  varchar,
+} from 'drizzle-orm/mysql-core'
 import { relations } from 'drizzle-orm'
 import { createId } from '@paralleldrive/cuid2'
 
@@ -21,6 +27,7 @@ export const companies = mysqlTable('companies', {
   website: text('website'),
   bannerURI: text('banner_uri'),
   logoURI: text('logo_uri'),
+  isActive: boolean('is_active').default(true),
   cityId: varchar('city_id', { length: 128 }).references(() => cities.id),
   createdAt: timestamp('created_at').defaultNow(),
 })
