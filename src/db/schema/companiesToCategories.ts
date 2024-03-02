@@ -1,11 +1,11 @@
 import { createId } from '@paralleldrive/cuid2'
 import { relations } from 'drizzle-orm'
-import { mysqlTable, varchar } from 'drizzle-orm/mysql-core'
+import { pgTable, varchar } from 'drizzle-orm/pg-core'
 
 import { companies } from './companies'
 import { categories } from './categories'
 
-export const companiesToCategories = mysqlTable('companies_to_categories', {
+export const companiesToCategories = pgTable('companies_to_categories', {
   id: varchar('id', { length: 128 })
     .$default(() => createId())
     .primaryKey(),

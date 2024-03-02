@@ -1,10 +1,10 @@
-import { mysqlTable, text, timestamp, varchar } from 'drizzle-orm/mysql-core'
+import { pgTable, text, timestamp, varchar } from 'drizzle-orm/pg-core'
 import { createId } from '@paralleldrive/cuid2'
 import { relations } from 'drizzle-orm'
 
 import { companiesToCategories } from './companiesToCategories'
 
-export const categories = mysqlTable('categories', {
+export const categories = pgTable('categories', {
   id: varchar('id', { length: 128 })
     .$default(() => createId())
     .primaryKey(),

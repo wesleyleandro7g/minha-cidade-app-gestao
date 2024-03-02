@@ -1,19 +1,12 @@
 {
   "version": "5",
-  "dialect": "mysql",
+  "dialect": "pg",
   "entries": [
     {
       "idx": 0,
       "version": "5",
-      "when": 1709051017270,
-      "tag": "0000_tan_nocturne",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1709225428126,
-      "tag": "0001_eminent_susan_delgado",
+      "when": 1709387002669,
+      "tag": "0000_lean_kid_colt",
       "breakpoints": true
     }
   ]

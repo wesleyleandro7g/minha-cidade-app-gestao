@@ -1,13 +1,7 @@
-import {
-  boolean,
-  mysqlTable,
-  text,
-  timestamp,
-  varchar,
-} from 'drizzle-orm/mysql-core'
+import { boolean, pgTable, text, timestamp, varchar } from 'drizzle-orm/pg-core'
 import { createId } from '@paralleldrive/cuid2'
 
-export const banners = mysqlTable('banners', {
+export const banners = pgTable('banners', {
   id: varchar('id', { length: 128 })
     .$default(() => createId())
     .primaryKey(),

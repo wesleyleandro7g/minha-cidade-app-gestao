@@ -7,11 +7,12 @@ loadEnvConfig(cwd())
 export default {
   schema: './src/db/schema',
   out: './src/db/migrations',
-  driver: 'mysql2',
+  driver: 'pg',
   dbCredentials: {
-    host: process.env.DB_HOST as string,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME as string,
+    host: process.env.NEXT_PUBLIC_DB_HOST as string,
+    user: process.env.NEXT_PUBLIC_DB_USER,
+    password: process.env.NEXT_PUBLIC_DB_PASS,
+    database: process.env.NEXT_PUBLIC_DB_NAME as string,
+    port: +process.env.NEXT_PUBLIC_DB_PORT! || 5432,
   },
 } satisfies Config
