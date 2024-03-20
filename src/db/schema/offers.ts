@@ -3,6 +3,7 @@ import { relations } from 'drizzle-orm'
 import { createId } from '@paralleldrive/cuid2'
 
 import { companies } from './companies'
+import { transactions } from './transactions'
 
 export const offers = pgTable('offers', {
   id: varchar('id', { length: 128 })
@@ -10,7 +11,7 @@ export const offers = pgTable('offers', {
     .primaryKey(),
   title: text('title').notNull(),
   description: text('description'),
-  imageURI: text('image_uri'),
+  imageUrl: text('image_url'),
   link: text('link'),
   isActive: boolean('is_active').default(true),
   companyId: varchar('company_id', { length: 128 }).references(
@@ -24,4 +25,5 @@ export const offersRelations = relations(offers, ({ one }) => ({
     fields: [offers.companyId],
     references: [companies.id],
   }),
+  transaction: one(transactions),
 }))

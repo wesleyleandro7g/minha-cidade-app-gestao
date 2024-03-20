@@ -15,8 +15,9 @@ type PostType = {
   whatsapp: string
   instagram: string
   website: string
-  bannerURI: string
-  logoURI: string
+  bannerHex: string
+  bannerUri: string
+  logoUri: string
   cityId: string
   categoriesId: string[]
 }
@@ -34,8 +35,9 @@ export async function GET() {
       whatsapp: companies.whatsapp,
       instagram: companies.instagram,
       website: companies.website,
-      bannerURI: companies.bannerURI,
-      logoURI: companies.logoURI,
+      bannerHex: companies.bannerHex,
+      bannerUri: companies.bannerUri,
+      logoUri: companies.logoUri,
       cityId: companies.cityId,
       cityName: cities.name,
     })
@@ -68,12 +70,13 @@ export async function POST(request: Request) {
     whatsapp: data.whatsapp,
     instagram: data.instagram,
     website: data.website,
-    bannerURI: data.bannerURI,
-    logoURI: data.logoURI,
+    bannerHex: data.bannerHex,
+    bannerUri: data.bannerUri,
+    logoUri: data.logoUri,
     cityId: data.cityId,
   })
 
-  return NextResponse.json(result[0].insertId)
+  return NextResponse.json(result.rowCount)
 }
 
 // export async function PUT(request: Request) {

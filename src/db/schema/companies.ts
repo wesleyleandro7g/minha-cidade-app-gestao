@@ -1,4 +1,11 @@
-import { pgTable, text, timestamp, varchar, boolean } from 'drizzle-orm/pg-core'
+import {
+  pgTable,
+  text,
+  timestamp,
+  varchar,
+  boolean,
+  decimal,
+} from 'drizzle-orm/pg-core'
 import { relations } from 'drizzle-orm'
 import { createId } from '@paralleldrive/cuid2'
 
@@ -22,6 +29,7 @@ export const companies = pgTable('companies', {
   bannerHex: text('banner_hex'),
   bannerUri: text('banner_uri'),
   logoUri: text('logo_uri'),
+  creditBalance: decimal('credit_balance', { precision: 10, scale: 2 }),
   isActive: boolean('is_active').default(true),
   cityId: varchar('city_id', { length: 128 }).references(() => cities.id),
   createdAt: timestamp('created_at').defaultNow(),

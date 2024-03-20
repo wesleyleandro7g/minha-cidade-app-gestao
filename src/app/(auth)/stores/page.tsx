@@ -1,6 +1,6 @@
 'use client'
 
-import { SquarePen } from 'lucide-react'
+import { Settings } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 
 import { Button } from '@/components/ui/button'
@@ -17,27 +17,16 @@ import {
 } from '@/components/ui/table'
 
 import { StoreRegisterForm } from '@/components/forms/store-register-form'
+import Link from 'next/link'
 
-type storeType = {
-  id: string
-  name: string
-  slogan: string
-  description: string
-  address: string
-  email: string
-  phone: string
-  whatsapp: string
-  instagram: string
-  website: string
-  bannerURI: string
-  logoURI: string
-  cityId: string
+import type { storeType } from '@/types/store'
+
+type responseType = storeType & {
   cityName: string
-  categoriesId: string[]
 }
 
 export default function Stores() {
-  const { data, error, isLoading, isRefetching } = useQuery<storeType[]>({
+  const { data, error, isLoading, isRefetching } = useQuery<responseType[]>({
     queryKey: ['stores'],
     queryFn: () => fetch('/api/store').then((response) => response.json()),
   })
@@ -112,11 +101,9 @@ export default function Stores() {
                     <TableCell>{store.address}</TableCell>
                     <TableCell>{store.cityName}</TableCell>
                     <TableCell className='flex justify-end'>
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <SquarePen className='size-5' />
-                        </DialogTrigger>
-                      </Dialog>
+                      <Link href={`/stores/${store.id}`}>
+                        <Settings className='size-5' />
+                      </Link>
                     </TableCell>
                   </TableRow>
                 ))}
