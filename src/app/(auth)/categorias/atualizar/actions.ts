@@ -3,12 +3,12 @@
 import { z } from 'zod'
 
 import { createClient } from '@/utils/supabase/server'
-import { updateCityFormSchema } from './schema'
+import { updateCategoryFormSchema } from './schema'
 
-type Inputs = z.infer<typeof updateCityFormSchema>
+type Inputs = z.infer<typeof updateCategoryFormSchema>
 
-export async function updateCityAction(inputs: Inputs) {
-  const parsed = updateCityFormSchema.safeParse(inputs)
+export async function updateCategoryAction(inputs: Inputs) {
+  const parsed = updateCategoryFormSchema.safeParse(inputs)
 
   if (!parsed.success) {
     return {
@@ -19,23 +19,22 @@ export async function updateCityAction(inputs: Inputs) {
   const supabase = createClient()
 
   const { data, error } = await supabase
-    .from('cities')
+    .from('categories')
     .update({
       name: parsed.data.name,
-      state: parsed.data.state,
-      zip_code: parsed.data.zip_code,
+      icon_name: parsed.data.iconName,
     })
     .eq('id', parsed.data.id)
 
   if (error) {
     return {
       success: false,
-      message: 'Erro ao atualizar cidade',
+      message: 'Erro ao atualizar categoria',
     }
   }
 
   return {
     success: true,
-    message: 'Cidade atualizada com sucesso',
+    message: 'Categoria atualizada com sucesso',
   }
 }

@@ -20,8 +20,6 @@ export async function registerCityAction(data: Inputs) {
 
   const result = await supabase.from('cities').insert(parsed.data)
 
-  console.log(result)
-
   if (result?.error) {
     return {
       success: false,
