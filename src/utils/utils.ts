@@ -14,3 +14,15 @@ export function encodedRedirect(
 ) {
   return redirect(`${path}?${type}=${encodeURIComponent(message)}`)
 }
+
+export const protectedRoutes = [
+  '/banners',
+  '/categorias',
+  '/cidades',
+  '/empresas',
+  '/dashboard',
+  '/ofertas',
+  '/configuracoes',
+  '/lojas',
+  '/usuarios',
+]

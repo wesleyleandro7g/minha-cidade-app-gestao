@@ -2,50 +2,98 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { ChevronDown } from 'lucide-react'
+
 import {
-  LayoutGrid,
-  Store,
-  UserRound,
-  Settings,
-  ChevronDown,
-} from 'lucide-react'
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+import { Skeleton } from '@/components/ui/skeleton'
+import { signOutAction } from '@/actions/sign-out'
+import { useUser } from '@/hooks/useUser'
 
 export default function Header() {
   const pathname = usePathname()
 
-  const options = [
-    { id: 0, label: 'Painel', path: '/panel', icon: LayoutGrid },
-    { id: 1, label: 'Lojas', path: '/stores', icon: Store },
-    { id: 2, label: 'Usuários', path: '/users', icon: UserRound },
-    { id: 3, label: 'Configurações', path: '/settings', icon: Settings },
-  ]
+  const { user, isLoading } = useUser()
+
+  function generateBreadcrumbItems() {
+    const paths = pathname.split('/').filter((path) => path !== '')
+
+    function createPathsLinks(currentPathIndex: number) {
+      return '/' + paths.slice(0, currentPathIndex + 1).join('/')
+    }
+
+    return paths.map((path, index) => {
+      return index + 1 < paths.length ? (
+        <>
+          <BreadcrumbItem key={`link-${index}`}>
+            <BreadcrumbLink asChild>
+              <Link href={createPathsLinks(index)} className='capitalize'>
+                {path}
+              </Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+        </>
+      ) : (
+        <BreadcrumbItem key={`page-${index}`}>
+          <BreadcrumbPage className='capitalize'>{path}</BreadcrumbPage>
+        </BreadcrumbItem>
+      )
+    })
+  }
+
+  function handleSignOut() {
+    signOutAction()
+  }
 
   return (
-    <header className='flex w-full justify-center bg-white p-4 border-b-2 border-gray-300'>
+    <header className='flex w-full justify-center bg-white p-4'>
       <div className='flex w-full max-w-screen-2xl gap-8 justify-between items-center'>
         <div className='flex justify-center gap-8'>
-          <h1 className='text-lg font-bold'>Minha Cidade</h1>
+          <Breadcrumb>
+            <BreadcrumbList>{generateBreadcrumbItems()}</BreadcrumbList>
+          </Breadcrumb>
 
-          <div className='flex space-x-2 items-center'>
-            {options.map((page) => (
-              <Link key={page.id} href={page.path}>
-                <div
-                  data-active={pathname.startsWith(page.path)}
-                  className='flex py-1 px-4 gap-2 items-center text-gray-600 border-white rounded-full data-[active=true]:font-semibold data-[active=true]:bg-primary/20 data-[active=true]:border-b-0 data-[active=true]:border-primary data-[active=true]:text-primary hover:bg-background'
-                >
-                  <page.icon className='size-4' />
-                  <span className='text-md'>{page.label}</span>
-                </div>
-              </Link>
-            ))}
-          </div>
+          <div className='flex space-x-2 items-center'></div>
         </div>
 
         <div className='flex space-x-2 items-center'>
-          <button className='flex justify-center items-center gap-1 h-8 px-4 lowercase text-sm text-primary bg-primary/20 rounded-full'>
-            wesley leandro
-            <ChevronDown className='size-4' />
-          </button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              {isLoading ? (
+                <Skeleton className='w-[200px] h-8 rounded-full bg-primary/20' />
+              ) : (
+                <button className='flex justify-center items-center gap-1 h-8 px-4 lowercase text-sm text-primary bg-primary/20 rounded-full'>
+                  {user && user?.email}
+                  <ChevronDown className='size-4' />
+                </button>
+              )}
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>Minha conta</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                onClick={handleSignOut}
+                className='cursor-pointer'
+              >
+                Sair
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </header>

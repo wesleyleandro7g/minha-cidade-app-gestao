@@ -31,5 +31,5 @@ export async function signInAction(data: Inputs) {
     }
   }
 
-  redirect('/panel')
+  redirect('/dashboard')
 }

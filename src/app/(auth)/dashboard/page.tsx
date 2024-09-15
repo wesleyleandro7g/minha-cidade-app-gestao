@@ -3,7 +3,7 @@
 import { signOutAction } from '@/actions/sign-out'
 import { createClient } from '@/utils/supabase/client'
 
-export default function Panel() {
+export default function Dashboard() {
   const supabase = createClient()
 
   function handleSignOut() {
