@@ -12,9 +12,7 @@ export default function RootLayout({
       <Aside />
       <div className='w-full'>
         <Header />
-        <main className='flex w-full max-w-screen-2xl h-full p-4 overflow-auto'>
-          {children}
-        </main>
+        <main className='flex w-full h-full p-4 overflow-auto'>{children}</main>
       </div>
     </div>
   )

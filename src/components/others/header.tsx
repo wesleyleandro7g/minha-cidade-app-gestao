@@ -62,7 +62,7 @@ export default function Header() {
 
   return (
     <header className='flex w-full justify-center bg-white p-4'>
-      <div className='flex w-full max-w-screen-2xl gap-8 justify-between items-center'>
+      <div className='flex w-full gap-8 justify-between items-center'>
         <div className='flex justify-center gap-8'>
           <Breadcrumb>
             <BreadcrumbList>{generateBreadcrumbItems()}</BreadcrumbList>
